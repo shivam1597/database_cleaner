@@ -1,0 +1,28 @@
+name: Job Schedular
+
+on:
+  schedule:
+    - cron: '34 19 * * *'
+  push:
+    branches:
+      - initial  # Change to your main branch name if needed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # You can change the runner OS if needed
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x  # Specify a supported Python version (e.g., 3.7, 3.8, 3.9, etc.)
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt  
+      
+      - name: Run your Python script
+        run: python fetch_api.py  # Replace with the actual script name
