@@ -2,7 +2,7 @@ name: Job Schedular
 
 on:
   schedule:
-    - cron: '34 19 * * *'
+    - cron: '38 19 * * *'
   push:
     branches:
       - initial  # Change to your main branch name if needed
@@ -25,4 +25,4 @@ jobs:
           pip install -r requirements.txt  
       
       - name: Run your Python script
-        run: python fetch_api.py  # Replace with the actual script name
+        run: python firebase_cleaner.py  # Replace with the actual script name
