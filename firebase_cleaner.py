@@ -2,7 +2,7 @@ import requests
 import firebase_admin
 from firebase_admin import credentials, auth, db
 from datetime import datetime
-
+import time
 # 12 am , 12 pm, 2 am, 2 pm
 def sign_in_with_email_and_password(email, password):
     # Firebase Authentication Sign In URL
@@ -54,7 +54,7 @@ def delete_data(path):
 
 def write_data(path):
     user_ref = db.reference(path=path)
-    user_ref.update({'hi':'hahaha'})
+    user_ref.upd({'hi':'hahaha'})
 
 # Replace 'your_id_token' with the actual ID token received from the client
 id_token = result['idToken']
@@ -66,6 +66,7 @@ current_datetime = datetime.now()
 current_hour = current_datetime.hour
 
 try:
+    admin_group_ids = ['xtKx1HJVHi', 'j9meaIIWn0', 'gHzfXoAOde', 'XPHl1hgCPr', 'MEZ243clJJ']
     # Verify the ID token
     decoded_token = auth.verify_id_token(id_token)
 
@@ -74,13 +75,15 @@ try:
 
     # Read data from the user's node
     if current_hour == 0:
-        delete_data(path='')
+        for group_id in admin_group_ids:
+            delete_data(path='/group_messages/{}'.format(group_id))
+            time.sleep(2)
     elif current_hour == 2:
-        delete_data(path='')
+        delete_data(path='user_messages')
     elif current_hour == 14:
-        write_data(path='chat_testing')
-    elif current_hour == 19:
-        write_data(path='chat_testing')
+        delete_data(path='user_messages')
+    # elif current_hour == 15:
+    #     write_data(path='chat_testing')
     # have to add for 12 noon
 
 except auth.AuthError as e:
