@@ -79,7 +79,7 @@ try:
         delete_data(path='')
     elif current_hour == 14:
         delete_data(path='')
-    elif current_hour == 15:
+    elif current_hour == 19:
         write_data(path='chat_testing')
     # have to add for 12 noon
 
