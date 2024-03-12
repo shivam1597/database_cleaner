@@ -1,28 +1,45 @@
+# name: Job Schedular
+
+# on:
+#   schedule:
+#     - cron: '0 * * * *'
+#   push:
+#     branches:
+#       - initial  # Change to your main branch name if needed
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest  # You can change the runner OS if needed
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+
+#       - name: Set up Python
+#         uses: actions/setup-python@v2
+#         with:
+#           python-version: 3.x  # Specify a supported Python version (e.g., 3.7, 3.8, 3.9, etc.)
+
+#       - name: Install dependencies
+#         run: |
+#           pip install -r requirements.txt  
+      
+#       - name: Run your Python script
+#         run: python firebase_cleaner.py  # Replace with the actual script name
+
+# code to pause the action
+
 name: Job Schedular
 
-on:
-  schedule:
-    - cron: '0 * * * *'
-  push:
-    branches:
-      - initial  # Change to your main branch name if needed
+on: []
 
 jobs:
   build:
     runs-on: ubuntu-latest  # You can change the runner OS if needed
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Skip this job
+        run: echo "This job is intentionally skipped."
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.x  # Specify a supported Python version (e.g., 3.7, 3.8, 3.9, etc.)
+# Add more jobs or customize as needed
 
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt  
-      
-      - name: Run your Python script
-        run: python firebase_cleaner.py  # Replace with the actual script name
